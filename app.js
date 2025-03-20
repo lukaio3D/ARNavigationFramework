@@ -28,10 +28,18 @@ function handleOrientation(event) {
     heading = 360 - event.alpha;
   }
 
-  document.getElementById("north").innerHTML = `Heading: ${Math.round(heading)}° `;
-  document.getElementById("alpha").innerHTML = `alpha: ${Math.round(event.alpha)}° `;
-  document.getElementById("beta").innerHTML = `beta: ${Math.round(event.beta)}° `;
-  document.getElementById("gamma").innerHTML = `gamma: ${Math.round(event.gamma)}° `;
+  document.getElementById("north").innerHTML = `Heading: ${Math.round(
+    heading
+  )}° `;
+  document.getElementById("alpha").innerHTML = `alpha: ${Math.round(
+    event.alpha
+  )}° `;
+  document.getElementById("beta").innerHTML = `beta: ${Math.round(
+    event.beta
+  )}° `;
+  document.getElementById("gamma").innerHTML = `gamma: ${Math.round(
+    event.gamma
+  )}° `;
 }
 
 // Initialize on start
@@ -59,12 +67,15 @@ btn.addEventListener("click", () => {
 });
 
 // Camera Feed for mobile devices
-navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-  .then(stream => {
-    const video = document.querySelector('video');
+navigator.mediaDevices
+  .getUserMedia({
+    video: { width: 300, height: 500, facingMode: "environment" },
+  })
+  .then((stream) => {
+    const video = document.querySelector("video");
     video.srcObject = stream;
     video.play();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error accessing the camera: " + err);
   });
