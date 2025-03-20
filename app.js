@@ -68,8 +68,8 @@ btn.addEventListener("click", () => {
   navigator.mediaDevices
     .getUserMedia({
       video: {
-        width: { ideal: window.innerHeight },
-        height: { ideal: window.innerWidth },
+        width: 1280,
+        height: 720,
         facingMode: "environment",
       },
     })
