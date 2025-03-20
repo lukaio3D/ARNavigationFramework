@@ -69,7 +69,7 @@ btn.addEventListener("click", () => {
 // Camera Feed for mobile devices
 navigator.mediaDevices
   .getUserMedia({
-    video: { width: 300, height: 500, facingMode: "environment" },
+    video: { width: 720, height: 1280, facingMode: "environment" },
   })
   .then((stream) => {
     const video = document.querySelector("video");
@@ -78,4 +78,5 @@ navigator.mediaDevices
   })
   .catch((err) => {
     console.error("Error accessing the camera: " + err);
+    video.style.backgroundColor = "black";
   });

@@ -4,11 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>AR Navigation API Test</title>
+    <style>
+      body {
+         color: white;
+         width: 100vw;
+         height: 100vh;
+         padding-left: 16px;
+         margin: 16px;
+         z-index: 1;
+         overflow: hidden;
+         font-family: sans-serif;
+      }
+      #video {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100vw;
+         height: 100vh;
+         object-fit: cover;
+         z-index: -1;
+      }
+    </style>
 </head>
 
-<body style="width: 100vw; height: 100vh;">
+<body >
     <h1>Navigation Demo</h1>
     <button id="start">Start</button>
     <h3>Koordinaten</h3>
@@ -20,7 +40,7 @@
     <p id="alpha"></p>
     <p id="beta"></p>
     <p id="gamma"></p>
-    <video id="video" autoplay playsinline style="width: 300px; height: 500px"></video>
+    <video id="video" autoplay playsinline style="width: 100vw; height: 100vh;"></video>
 </body>
 <script src="./app.js"></script>
 
