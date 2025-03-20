@@ -17,9 +17,17 @@ const options = {
     document.getElementById("lat").innerHTML = `Latitude : ${crd.latitude}`;
     document.getElementById("lon").innerHTML = `Longitude: ${crd.longitude}`;
     document.getElementById("acc").innerHTML = `More or less ${crd.accuracy} meters.`;
-    document.getElementById("north").innerHTML = `heading ${crd.heading}° `;
   }
   
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
+
+  function handleOrientation(event){
+    document.getElementById("north").innerHTML = `heading ${event.absolute}° `;
+    document.getElementById("alpha").innerHTML = `alpha ${event.alpha}° `;
+    document.getElementById("beta").innerHTML = `beta ${event.beta}° `;
+    document.getElementById("gamma").innerHTML = `gamma ${event.gamma}° `;
+  }
+
+  window.addEventListener("deviceorientation", handleOrientation);
