@@ -39,5 +39,22 @@ function handleOrientation(event) {
 const btn = document.getElementById("start");
 btn.addEventListener("click", () => {
   navigator.geolocation.watchPosition(success, error, options);
-  window.addEventListener("deviceorientation", handleOrientation);
+
+  // Prüfe, ob iOS explizite Berechtigung benötigt
+  if (
+    window.DeviceOrientationEvent &&
+    typeof DeviceOrientationEvent.requestPermission === "function"
+  ) {
+    DeviceOrientationEvent.requestPermission()
+      .then((permissionState) => {
+        if (permissionState === "granted") {
+          window.addEventListener("deviceorientation", handleOrientation);
+        } else {
+          console.error("Device orientation permission denied.");
+        }
+      })
+      .catch(console.error);
+  } else {
+    window.addEventListener("deviceorientation", handleOrientation);
+  }
 });
