@@ -19,20 +19,19 @@ function error(err) {
 }
 
 function handleOrientation(event) {
-  let heading = 360 - event.alpha;
+  let heading;
+  // Use the native iOS method if available
+  if (event.webkitCompassHeading !== undefined) {
+    heading = event.webkitCompassHeading;
+  } else {
+    // Otherwise, for Android and other devices use the alpha value (calibrated if necessary)
+    heading = 360 - event.alpha;
+  }
 
-  document.getElementById("north").innerHTML = `Heading: ${Math.round(
-    heading
-  )}° `;
-  document.getElementById("alpha").innerHTML = `alpha: ${Math.round(
-    event.alpha
-  )}° `;
-  document.getElementById("beta").innerHTML = `beta: ${Math.round(
-    event.beta
-  )}° `;
-  document.getElementById("gamma").innerHTML = `gamma: ${Math.round(
-    event.gamma
-  )}° `;
+  document.getElementById("north").innerHTML = `Heading: ${Math.round(heading)}° `;
+  document.getElementById("alpha").innerHTML = `alpha: ${Math.round(event.alpha)}° `;
+  document.getElementById("beta").innerHTML = `beta: ${Math.round(event.beta)}° `;
+  document.getElementById("gamma").innerHTML = `gamma: ${Math.round(event.gamma)}° `;
 }
 
 // Initialize on start
