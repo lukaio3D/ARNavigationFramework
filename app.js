@@ -64,19 +64,22 @@ btn.addEventListener("click", () => {
   } else {
     window.addEventListener("deviceorientation", handleOrientation);
   }
+  // Camera Feed for mobile devices
+  navigator.mediaDevices
+    .getUserMedia({
+      video: {
+        width: { ideal: window.innerWidth },
+        height: { ideal: window.innerHeight },
+        facingMode: "environment",
+      },
+    })
+    .then((stream) => {
+      const video = document.querySelector("video");
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch((err) => {
+      console.error("Error accessing the camera: " + err);
+      video.style.backgroundColor = "black";
+    });
 });
-
-// Camera Feed for mobile devices
-navigator.mediaDevices
-  .getUserMedia({
-    video: { width: 1280, height: 720, facingMode: "environment" },
-  })
-  .then((stream) => {
-    const video = document.querySelector("video");
-    video.srcObject = stream;
-    video.play();
-  })
-  .catch((err) => {
-    console.error("Error accessing the camera: " + err);
-    video.style.backgroundColor = "black";
-  });
