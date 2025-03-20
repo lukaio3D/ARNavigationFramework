@@ -1,9 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("startButton");
-    btn.addEventListener("click", () => {
-        navigator.geolocation.getCurrentPosition(success, error, options);
-    });
-});
 
 const options = {
     enableHighAccuracy: true,
@@ -23,11 +17,15 @@ const options = {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
 
-  function handleOrientation(event){
-    document.getElementById("north").innerHTML = `heading ${event.absolute}° `;
-    document.getElementById("alpha").innerHTML = `alpha ${event.alpha}° `;
-    document.getElementById("beta").innerHTML = `beta ${event.beta}° `;
-    document.getElementById("gamma").innerHTML = `gamma ${event.gamma}° `;
+  function handleOrientation(event) {
+    let heading = 360 - event.alpha;
+    
+    document.getElementById("north").innerHTML = `Heading: ${Math.round(heading)}° `;
+    document.getElementById("alpha").innerHTML = `alpha: ${Math.round(event.alpha)}° `;
+    document.getElementById("beta").innerHTML = `beta: ${Math.round(event.beta)}° `;
+    document.getElementById("gamma").innerHTML = `gamma: ${Math.round(event.gamma)}° `;
   }
 
+  // Initialize on start
+  navigator.geolocation.getCurrentPosition(success, error, options);
   window.addEventListener("deviceorientation", handleOrientation);
