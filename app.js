@@ -57,3 +57,14 @@ btn.addEventListener("click", () => {
     window.addEventListener("deviceorientation", handleOrientation);
   }
 });
+
+// Camera Feed for mobile devices
+navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+  .then(stream => {
+    const video = document.querySelector('video');
+    video.srcObject = stream;
+    video.play();
+  })
+  .catch(err => {
+    console.error("Error accessing the camera: " + err);
+  });
