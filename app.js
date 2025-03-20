@@ -17,6 +17,7 @@ const options = {
     document.getElementById("lat").innerHTML = `Latitude : ${crd.latitude}`;
     document.getElementById("lon").innerHTML = `Longitude: ${crd.longitude}`;
     document.getElementById("acc").innerHTML = `More or less ${crd.accuracy} meters.`;
+    document.getElementById("north").innerHTML = `heading ${crd.heading}° `;
   }
   
   function error(err) {
